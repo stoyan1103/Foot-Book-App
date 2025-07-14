@@ -38,6 +38,6 @@ src/main/resources/application.properties
 # Ignoring some files
 .mvn/
 .gitattributes
-.mvnw
+mvnw
 mvnw.cmd
 HELP.md
