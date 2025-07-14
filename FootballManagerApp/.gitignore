@@ -34,3 +34,11 @@ build/
 
 # Spring Boot config (ако пази чувствителна инфо)
 src/main/resources/application.properties
+
+# Ignoring some files
+.idea
+.mvn
+.gitattributes
+.mvnw
+mvnw.cmd
+HELP.md
