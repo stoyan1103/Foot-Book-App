@@ -36,8 +36,8 @@ build/
 src/main/resources/application.properties
 
 # Ignoring some files
-.idea
-.mvn
+.idea/
+.mvn/
 .gitattributes
 .mvnw
 mvnw.cmd
