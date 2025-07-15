@@ -1,21 +1,23 @@
 package com.example.user.model;
 
+import com.example.reservation.model.Reservation;
+import com.example.wallet.model.Wallet;
 import jakarta.persistence.*;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Set;
 
-@SuperBuilder
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "user_type")
-public abstract class User {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,21 +29,32 @@ public abstract class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, length = 100)
-    private String fullName;
+    @Column(length = 50)
+    private String firstName;
 
+    @Column(length = 50)
+    private String lastName;
+
+    @Basic
+    private String profilePictureUrl;
+
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    private UserRole role;
+
+    @Basic
     private boolean isActive;
 
-    @Basic
-    private LocalDate dateOfBirth;
-
-    @Basic
-    private String country;
-
-    @Basic
+    @Column(nullable = false)
     private LocalDateTime createdOn;
 
-    @Basic
+    @Column(nullable = false)
     private LocalDateTime updatedOn;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Reservation> reservations;
+
+    @OneToOne
+    @JoinColumn(name = "wallet_id")
+    private Wallet wallet;
 }
