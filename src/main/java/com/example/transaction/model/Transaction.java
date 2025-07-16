@@ -60,10 +60,6 @@ public class Transaction {
     @Column(nullable = false)
     private LocalDateTime createdOn;
 
-    @OneToOne
-    @JoinColumn(name = "reservation_id")
-    private Reservation reservation;
-
     @ManyToOne
     @JoinColumn(name = "wallet_id")
     private Wallet wallet;

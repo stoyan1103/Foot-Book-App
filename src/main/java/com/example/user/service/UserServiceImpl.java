@@ -2,6 +2,7 @@ package com.example.user.service;
 
 import com.example.exception.DomainException;
 import com.example.exception.UsernameAlreadyExistsException;
+import com.example.security.AuthenticationMetadata;
 import com.example.user.model.User;
 import com.example.user.model.UserRole;
 import com.example.user.repository.UserRepository;
@@ -11,6 +12,9 @@ import com.example.web.dto.RegisterRequest;
 import com.example.web.dto.UserEditRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +25,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -49,6 +53,10 @@ public class UserServiceImpl implements UserService {
 
         addWalletToUser(user, wallet);
 
+        userRepository.save(user);
+
+        log.info("Wallet with id [%s] was added to User with username [%s].".formatted(wallet.getId(), user.getUsername()));
+
         log.info("Successfully create new user account for username [%s] and id [%s]".formatted(user.getUsername(), user.getId()));
     }
 
@@ -66,7 +74,6 @@ public class UserServiceImpl implements UserService {
 
     private void addWalletToUser(User user, Wallet wallet) {
         user.setWallet(wallet);
-        log.info("Wallet with id [%s] was added to User with username [%s].".formatted(wallet.getId(), user.getUsername()));
     }
 
     @Override
@@ -115,6 +122,12 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-    // TODO
-    // Implement UserDetailsService and its loadByUsername method for Authentication and Authorization
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new DomainException("User with this username does not exist."));
+
+        return new AuthenticationMetadata(user.getId(), username, user.getPassword(), user.getRole(), user.isActive());
+    }
 }

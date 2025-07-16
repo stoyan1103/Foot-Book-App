@@ -12,4 +12,6 @@ public interface WalletService {
     Wallet initalizeWallet(User user);
 
     Transaction depositMoneyToAccount(Long walletId, BigDecimal amount);
+
+    Transaction charge(User user, Long walletId, BigDecimal amount, String description);
 }

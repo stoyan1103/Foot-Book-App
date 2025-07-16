@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalTime;
 
 @Builder
 @Data
@@ -28,6 +29,18 @@ public class Field {
     @Column(nullable = false)
     private City city;
 
+    @Column(nullable = false)
+    private String locationUrl;
+
+    @Column(nullable = false)
+    private LocalTime openHour;
+
+    @Column(nullable = false)
+    private LocalTime closeHour;
+
+    @Column(nullable = false)
+    private String imageUrl;
+
     @Basic
     private String description;
 
@@ -36,6 +49,9 @@ public class Field {
 
     @Basic
     private boolean isAvailable;
+
+    @Column
+    private boolean isApproved;
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
