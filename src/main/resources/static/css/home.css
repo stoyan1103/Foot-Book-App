@@ -1,0 +1,33 @@
+body {
+    background-color: #f4fdf6;
+}
+
+.action-card {
+    background-color: #ffffff;
+    border: 1px solid #d1e7dd;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+.action-card:hover {
+    transform: scale(1.03);
+}
+
+.card-title {
+    color: #198754;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #6c757d;
+}
+
+.btn-success {
+    background-color: #198754;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #157347;
+}

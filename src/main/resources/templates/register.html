@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register | FootBook</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+</head>
+<body>
+
+<div class="form-container">
+    <h2 class="text-center">Create Your FootBook Account</h2>
+
+    <form method="post" action="/register">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <!-- Optional error message placeholder -->
+        <div class="text-center" style="color: red; margin-bottom: 10px;">
+            <!-- Error message here -->
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="submit" class="btn">Register</button>
+        </div>
+
+        <div class="text-center mt-4">
+            <p>Already have an account? <a href="/login">Login here</a></p>
+        </div>
+    </form>
+</div>
+
+<footer>
+    © 2026 FootBook. All rights reserved.
+</footer>
+</body>
+</html>

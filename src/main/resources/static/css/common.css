@@ -1,0 +1,119 @@
+/* ---------- Base Styles ---------- */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background-color: #f4f6f8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #212529;
+}
+
+body > .form-container {
+    flex: 1; /* Заема цялото налично пространство */
+}
+
+/* ---------- Headings ---------- */
+h1, h2, h3, h4, h5 {
+    color: #28a745; /* зелено */
+    font-weight: 600;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+    padding: 10px 20px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.2s ease-in-out;
+    background-color: #34c38f;
+    color: white;
+    border: none;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: #34c38f;
+    border: 2px solid #34c38f;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* ---------- Links ---------- */
+a {
+    text-decoration: none;
+    color: #28a745;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Containers ---------- */
+.form-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ---------- Forms ---------- */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #34c38f;
+    box-shadow: 0 0 0 0.15rem rgba(52, 195, 143, 0.25);
+}
+
+/* ---------- Footer ---------- */
+footer {
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9rem;
+    /* margin-top: auto; */
+}
+
+/* ---------- Utility ---------- */
+.text-center {
+    text-align: center;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+.shadow {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}

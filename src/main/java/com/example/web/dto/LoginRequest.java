@@ -1,16 +1,10 @@
 package com.example.web.dto;
 
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Builder
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class RegisterRequest {
+public class LoginRequest {
 
     @Size(min = 6, message = "Username must be at least 6 symbols")
     private String username;
