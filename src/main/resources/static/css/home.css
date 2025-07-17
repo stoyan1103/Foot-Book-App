@@ -1,33 +1,202 @@
-body {
-    background-color: #f4fdf6;
+/* Общ стил за layout */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.action-card {
-    background-color: #ffffff;
-    border: 1px solid #d1e7dd;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease-in-out;
+body, html {
+    height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
 }
 
-.action-card:hover {
-    transform: scale(1.03);
+/* Контейнер за страницата */
+.container-wrapper {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.card-title {
-    color: #198754;
-    font-weight: bold;
+/* SIDEBAR */
+.sidebar {
+    width: 240px;
+    background-color: #1f2a44; /* тъмносин фон */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0;
+    position: relative;
 }
 
-.card-text {
-    color: #6c757d;
+.sidebar-content {
+     flex-grow: 1;
+     padding-bottom: 10px;
 }
 
-.btn-success {
-    background-color: #198754;
+.sidebar .nav-links a,
+.admin-section a,
+.field-owner-section a {
+    display: block;
+    color: white;
+    padding: 20px 20px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.sidebar .nav-links a:hover,
+.admin-section a:hover,
+.field-owner-section a:hover {
+    background-color: #2f3e5c;
+    border-left: 4px solid #00bcd4;
+}
+
+.section-title {
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: #aaa;
+}
+
+.logout-container {
+    margin-top: auto;
+    padding: 20px;
+}
+
+.logout-btn {
+    display: block;
+    background-color: #dc3545;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.logout-btn:hover {
+    background-color: #bd2130;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    padding-bottom: 0;
+    background-color: #f4f6fa;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+/* User Info Box */
+.user-info-container {
+    background-color: #1f2a44;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 50%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-pic {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 4px solid #9ed3ee;
+}
+
+.info-details h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #9ed3ee;
+}
+
+.info-details p {
+    font-size: 1.1rem;
+    margin: 5px 0;
+}
+
+.edit-profile-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #0077b6;
+    color: white;
     border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
-.btn-success:hover {
-    background-color: #157347;
+.edit-profile-btn:hover {
+    background-color: #005f8a;
+}
+
+/* News Cards */
+.latest-news {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 0;
+    padding: 0px 10px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.latest-news h3 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #005f8a;
+    text-align: center;
+}
+
+.news-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.news-card {
+    background-color: white;
+    color: #253659;
+    padding: 25px;
+    border-radius: 8px;
+    flex: 1 1 calc(30% - 30px);
+    min-width: 300px;
+    min-height: 200px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+}
+
+.news-card h4 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #1f2a44;
+    text-align: center;
+}
+
+.news-card p {
+    font-size: 0.95rem;
+    text-align: center;
+    padding-top: 2em;
 }

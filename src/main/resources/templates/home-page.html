@@ -2,62 +2,75 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FootBook - Home</title>
+    <title>Home - FootBook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="/static/css/common.css">
     <link rel="stylesheet" href="/static/css/home.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success px-4">
-        <a class="navbar-brand" href="#">FootBook</a>
-        <div class="collapse navbar-collapse justify-content-end">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="/fields">Fields</a></li>
-                <li class="nav-item"><a class="nav-link" href="/my-profile">My Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="container-wrapper">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <nav class="nav-links">
+                <a href="#"><i class="fas fa-home"></i> Dashboard</a>
+                <a href="#"><i class="fas fa-money-check-alt"></i> Transactions</a>
+                <a href="#"><i class="fas fa-calendar-check"></i> Reservations</a>
+                <a href="#"><i class="fas fa-futbol"></i> Fields</a>
+                <a href="#"><i class="fas fa-wallet"></i> My Wallet</a>
+            </nav>
 
-    <main class="container text-center py-5">
-        <h1 class="display-4 mb-4">Welcome back!</h1>
-        <p class="lead mb-5">What would you like to do today?</p>
+            <div class="admin-section">
+                <h5 class="section-title">Admin Panel</h5>
+                <a href="/admin"><i class="fas fa-user-shield"></i> Admin</a>
+            </div>
 
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card action-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Browse Fields</h5>
-                        <p class="card-text">Explore and book available football fields.</p>
-                        <a href="/fields" class="btn btn-success">Explore</a>
+            <div class="field-owner-section">
+                <h5 class="section-title">Field Owner Panel</h5>
+                <a href="/my-fields"><i class="fas fa-warehouse"></i> My Field</a>
+            </div>
+
+            <div class="logout-container">
+                <a href="/logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <section class="user-info-container">
+                <img src="data:image/jpeg;base64,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" alt="Profile Picture" class="profile-pic">
+                <div class="info-details">
+                    <h2>Username: johndoe</h2>
+                    <p>ID: 12345</p>
+                    <p>First Name: John</p>
+                    <p>Last Name: Doe</p>
+                    <p>Joined: Jan 2024</p>
+                    <a href="#" class="edit-profile-btn">Edit Profile</a>
+                </div>
+            </section>
+
+            <!-- NEWS SECTION -->
+            <section class="latest-news">
+                <h3>Latest News</h3>
+                <div class="news-cards">
+                    <div class="news-card">
+                        <h4>Field Upgrades in Sofia</h4>
+                        <p>Several football fields have been upgraded with new turf and lighting.</p>
+                    </div>
+                    <div class="news-card">
+                        <h4>Booking System Update</h4>
+                        <p>Our new reservation calendar is now live with better time slot filters.</p>
+                    </div>
+                    <div class="news-card">
+                        <h4>New Partnerships</h4>
+                        <p>FootBook is now partnering with over 100 field owners nationwide.</p>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card action-card">
-                    <div class="card-body">
-                        <h5 class="card-title">My Bookings</h5>
-                        <p class="card-text">View and manage your existing reservations.</p>
-                        <a href="/bookings" class="btn btn-success">View</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card action-card">
-                    <div class="card-body">
-                        <h5 class="card-title">My Profile</h5>
-                        <p class="card-text">Update your information and preferences.</p>
-                        <a href="/my-profile" class="btn btn-success">Edit</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+            </section>
+        </main>
+    </div>
 
-    <footer>
-        © 2026 FootBook. All rights reserved.
-    </footer>
 
 </body>
 </html>
