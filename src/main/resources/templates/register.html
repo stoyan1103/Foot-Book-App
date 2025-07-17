@@ -1,28 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Register | FootBook</title>
-    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/css/common.css">
 </head>
 <body>
 
 <div class="form-container">
     <h2 class="text-center">Create Your FootBook Account</h2>
 
-    <form method="post" action="/register">
+    <form th:action="@{/register}" th:method="POST" th:object="${registerRequest}">
         <div>
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" placeholder="Username" id="username" th:field="*{username}" required>
+            <!-- Optional error message placeholder -->
+            <div class="text-center" style="color: red; margin-bottom: 10px;">
+                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+            </div>
         </div>
         <div>
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" placeholder="Password" id="password" th:field="*{password}" required>
+            <!-- Optional error message placeholder -->
+            <div class="text-center" style="color: red; margin-bottom: 10px;">
+                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+            </div>
         </div>
-
-        <!-- Optional error message placeholder -->
-        <div class="text-center" style="color: red; margin-bottom: 10px;">
-            <!-- Error message here -->
+        <div>
+            <label for="confirm_password">Repeat Password:</label>
+            <input type="password" placeholder="Confirm Password" id="confirm_password" th:field="*{confirmPassword}" required>
+            <!-- Optional error message placeholder -->
+            <div class="text-center" style="color: red; margin-bottom: 10px;">
+                <p th:if="${#fields.hasErrors('repeatedPassword')}" th:errors="*{repeatedPassword}"></p>
+            </div>
         </div>
 
         <div class="text-center mt-4">
@@ -30,7 +41,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <p>Already have an account? <a href="/login">Login here</a></p>
+            <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
         </div>
     </form>
 </div>

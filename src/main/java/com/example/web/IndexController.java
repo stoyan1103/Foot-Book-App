@@ -39,13 +39,13 @@ public class IndexController {
         modelAndView.addObject("loginRequest", new LoginRequest());
 
         if (errorParam != null) {
-            modelAndView.addObject("errorMessage", "Incorrect username or passowrd!");
+            modelAndView.addObject("errorMessage", "Incorrect username or password!");
         }
 
         return modelAndView;
     }
 
-    @GetMapping("register")
+    @GetMapping("/register")
     public ModelAndView getRegisterPage() {
 
         ModelAndView modelAndView = new ModelAndView();

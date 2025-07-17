@@ -35,10 +35,10 @@ public class Transaction {
     @Column(nullable = false)
     private String receiver;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 5, scale = 2)
     private BigDecimal amount;
 
-    @Column(nullable = false)
+    @Column(nullable = false, precision = 7, scale = 2)
     private BigDecimal balanceLeft;
 
     @Column(nullable = false)

@@ -54,7 +54,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Reservation> reservations;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wallet_id")
     private Wallet wallet;
 }

@@ -62,6 +62,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     private User initializeUser(RegisterRequest registerRequest) {
 
+        checkIfRepeatedPasswordIsTheSame(registerRequest.getPassword(), registerRequest.getConfirmPassword());
+
         return User.builder()
                 .username(registerRequest.getUsername())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
@@ -70,6 +72,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .createdOn(LocalDateTime.now())
                 .updatedOn(LocalDateTime.now())
                 .build();
+    }
+
+    private void checkIfRepeatedPasswordIsTheSame(String password, String confirmPassword) {
+        if (!password.equals(confirmPassword)) {
+            throw new DomainException("The password and repeated password are not the same.");
+        }
     }
 
     private void addWalletToUser(User user, Wallet wallet) {

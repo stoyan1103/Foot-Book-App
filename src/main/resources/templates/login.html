@@ -1,36 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Login | FootBook</title>
-    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/css/common.css">
 </head>
 <body>
 
     <div class="form-container">
         <h2 class="text-center">Login to FootBook</h2>
 
-        <form method="post" action="/login">
+        <form th:action="@{/login}" th:method="POST", th:object="${loginRequest}">
             <div>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+                <label for="username">Username</label>
+                <input type="text" placeholder="Username" id="username" th:field="*{username}" required>
             </div>
             <div>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" id="password" th:field="*{password}" required>
             </div>
 
             <!-- Optional error message placeholder -->
-            <div class="text-center" style="color: red; margin-bottom: 10px;">
-                <!-- Error message here -->
-            </div>
+            <div th:if="${errorMessage}" th:text="${errorMessage}" class="text-center" style="color: red; margin-bottom: 10px;"></div>
 
             <div class="text-center mt-4">
                 <button type="submit" class="btn">Login</button>
             </div>
 
             <div class="text-center mt-4">
-                <p>Don't have an account? <a href="/register">Register here</a></p>
+                <p>Don't have an account? <a th:href="@{/register}">Register here</a></p>
             </div>
         </form>
     </div>
