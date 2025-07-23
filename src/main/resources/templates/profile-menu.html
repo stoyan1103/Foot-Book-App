@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - FootBook</title>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Common + Page-specific CSS -->
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/profile.css">
+
+    <!-- Favicon (по желание) -->
+    <link rel="icon" type="image/png" href="/images/favicon.png" th:href="@{/images/favicon.png}">
+</head>
+<body>
+
+    <div class="container-wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-content">
+                <div class="nav-links">
+                    <a th:href="@{/home}"><i class="fas fa-home"></i> Home</a>
+                </div>
+            </div>
+            <div class="logout-container">
+                <form th:action="@{/logout}" method="POST">
+                    <button type="submit" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="main-content">
+            <!-- User info display -->
+            <div class="user-info-container">
+                <img th:src="${#strings.isEmpty(user.profilePictureUrl) ? 'https://icons.veryicon.com/png/o/miscellaneous/user-avatar/user-avatar-male-5.png' : user.profilePictureUrl}" alt="Profile Picture" class="profile-pic">
+                <div class="info-details">
+                    <h2 th:text="${user.username}">Username</h2>
+                    <p><strong>Registered on:</strong> <span th:text="${#temporals.format(user.createdOn, 'dd MMM yyyy', T(java.util.Locale).ENGLISH)}"></span></p>
+                </div>
+            </div>
+
+            <!-- Form for editing -->
+            <div class="user-info-container">
+                <h2 style="margin-bottom: 20px; color: #9ed3ee;">Edit Profile</h2>
+                <form th:action="@{'/users/' + ${user.id} + '/profile'}"  th:method="PUT" th:object="${userEditRequest}" class="edit-profile-form">
+
+                    <div style="margin-bottom: 15px;">
+                        <label for="firstName">First Name:</label><br>
+                        <input type="text" id="firstName" placeholder="First Name" th:field="*{firstName}" maxlength="20"/>
+                        <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="field-error"></div>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label for="lastName">Last Name:</label><br>
+                        <input type="text" id="lastName" placeholder="Last Name" th:field="*{lastName}" maxlength="20"/>
+                        <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="field-error"></div>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label for="profilePictureUrl">Profile Picture URL:</label><br>
+                        <input type="text" id="profilePictureUrl" placeholder="Profile Picture URL" th:field="*{profilePictureUrl}" />
+                        <div th:if="${#fields.hasErrors('profilePictureUrl')}" th:errors="*{profilePictureUrl}" class="field-error"></div>
+                    </div>
+
+                    <button type="submit" class="edit-profile-btn">Edit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

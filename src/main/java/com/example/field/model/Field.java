@@ -53,7 +53,7 @@ public class Field {
     @Column
     private boolean isApproved;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private User owner;
 }

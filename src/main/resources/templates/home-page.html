@@ -44,11 +44,10 @@
                 <img th:src="${#strings.isEmpty(user.profilePictureUrl) ? 'https://icons.veryicon.com/png/o/miscellaneous/user-avatar/user-avatar-male-5.png' : user.profilePictureUrl}" alt="Profile Picture" class="profile-pic">
                 <div class="info-details">
                     <h2 th:text="${'Username: ' + user.username}"></h2>
-                    <p th:text="${'ID: ' + user.id}"></p>
                     <p th:text="${#strings.isEmpty(user.firstName) ? 'Edit your profile and add first name' : 'First Name: ' + user.firstName}"></p>
                     <p th:text="${#strings.isEmpty(user.lastName) ? 'Edit your profile and add last name' : 'Last Name: ' + user.lastName}"></p>
-                    <p th:text="${#temporals.format(user.createdOn, 'dd MMM yyyy', T(java.util.Locale).ENGLISH)}"></p>
-                    <a href="#" class="edit-profile-btn">Edit Profile</a>
+                    <p th:text="${'Registered on: ' + #temporals.format(user.createdOn, 'dd MMM yyyy', T(java.util.Locale).ENGLISH)}"></p>
+                    <a th:href="@{'/users/' + ${user.id} + '/profile'}" class="edit-profile-btn">Edit Profile</a>
                 </div>
             </section>
 

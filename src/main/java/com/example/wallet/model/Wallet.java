@@ -24,7 +24,7 @@ public class Wallet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "wallet")
+    @OneToOne(mappedBy = "wallet", fetch = FetchType.LAZY)
     private User owner;
 
     @Column(nullable = false, precision = 7, scale = 2)

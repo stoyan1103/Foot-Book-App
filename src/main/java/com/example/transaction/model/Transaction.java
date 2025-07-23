@@ -60,7 +60,7 @@ public class Transaction {
     @Column(nullable = false)
     private LocalDateTime createdOn;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wallet_id")
     private Wallet wallet;
 }
